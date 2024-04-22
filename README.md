@@ -24,8 +24,4 @@ The goal of this assignment is to test various sorting algorithms on an array of
 - **Queue**
 
 
-Contributions to this assignment are welcome! Feel free to fork this repository, make changes, and submit a pull request. Please ensure that any code changes are accompanied by appropriate documentation and tests.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
