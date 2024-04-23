@@ -33,6 +33,10 @@ LinkedList::~LinkedList() {
 
 void LinkedList::display() {
     Node *p = first;
+    if(first == nullptr) {
+        cout << "List is empty\n";
+        return;
+    }
     while(p){
         cout << p->data << " ";
         p = p->next;
@@ -64,6 +68,7 @@ void LinkedList::insertAt(int index, int x) {
     t->next = nullptr;
 
     if(index == 0){
+        t->next = first;
         first = t;
     }
     else{
@@ -74,27 +79,152 @@ void LinkedList::insertAt(int index, int x) {
         p->next = t;
     }
 }
+void LinkedList::insertAtHead(int x) {
+    Node *t;
+    t = new Node;
+    t->data = x;
+    t->next = nullptr;
+    t->next = first;
+    first = t;
+}
+void LinkedList::insertAtTail(int x) {
+    Node* newNode = new Node;
+    newNode->data = x;
+    newNode->next = nullptr;
 
-int LinkedList::removeAt(int index) {
+    if (first == nullptr) {
+        // If the list is empty, the new node becomes the first node
+        first = newNode;
+    }
+    else{
+        Node* current{first};
+        while(current->next != nullptr){
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+
+
+
+}
+void LinkedList::removeAt(int index) {
     Node *p, *q = nullptr;
-    int x = -1;
-    if(index < 1 or index > length())
-        return -1;
-    if(index == 1){
+    if(index < 0 or index > length())
+        return;
+    if(index == 0){
         p = first;
         first = first->next;
-        x = p->data;
         delete p;
     }
     else{
         p = first;
-        for(int i = 0; i < index - 1; i++){
+        for(int i = 0; i < index ; i++){
             q = p;
             p = p->next;
         }
         q->next = p->next;
-        x = p->data;
         delete p;
     }
-    return x;
+}
+
+void LinkedList::removeAtHead() {
+    Node* p{first};
+    first = first->next;
+    delete p;
+}
+void LinkedList::removeAtTail() {
+    if (first == nullptr) {
+        return; // List is empty, nothing to remove
+    }
+
+    if (first->next == nullptr) {
+        // If there's only one node in the list
+        delete first;
+        first = nullptr;
+        return;
+    }
+
+    Node* current{first};
+    while(current->next->next != nullptr){
+        current = current->next;
+    }
+    delete current->next;
+    current->next = nullptr;
+}
+void LinkedList::replaceAt(int x, int index) {
+    Node *t, *p{first};
+
+    if(index < 0 or index > length()){
+        return;
+    }
+
+    t = new Node;
+    t->data = x;
+    t->next = nullptr;
+
+    if(index == 0){
+        t->next = first->next;
+        delete first;
+        first = t;
+    }
+    else{
+        for(int i = 0; i < index-1; i++){
+            p = p->next;
+        }
+        t->next = p->next->next;
+        delete p->next;
+        p->next = t;
+    }
+}
+
+Node* LinkedList::retrieveAt(int index) {
+    if(index == 0){
+        return first;
+    }
+    Node* currentNode = first;
+    int currentIndex = 0;
+    while(currentIndex < index and currentNode!= nullptr){
+        currentNode = currentNode->next;
+        currentIndex++;
+    }
+    if(currentIndex==index and currentNode!= nullptr)
+        return currentNode;
+    else
+        return nullptr;
+
+}
+
+bool LinkedList::exists(int x) {
+    if(first->data == x) return true;
+    Node* currentNode{first};
+    while(currentNode!= nullptr){
+        if(currentNode->data == x)
+            return true;
+        currentNode = currentNode->next;
+    }
+    return false;
+}
+
+bool LinkedList::equals(int index, int x) {
+    if(index==0 and first->data == x) return true;
+    int currentIndex = 0;
+    Node* currentNode{first};
+    while(currentIndex < index and currentNode!= nullptr){
+        currentNode = currentNode->next;
+        currentIndex++;
+    }
+    if(currentIndex==index and currentNode!= nullptr and currentNode->data == x)
+        return true;
+    else return false;
+}
+
+bool LinkedList::isEmpty() {
+    if(length() == 0)
+        return true;
+    return false;
+}
+
+void LinkedList::clear(){
+    while(first!= nullptr)
+        removeAtHead();
 }
