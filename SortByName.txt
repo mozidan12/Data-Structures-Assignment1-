@@ -1,0 +1,23 @@
+Algorithm: Shell Sort
+Running Time: 4 microseconds
+
+Ali
+35412
+3.5
+
+Hamada
+49830
+2
+
+Mariam
+69712
+3.7
+
+Mohamed Kamal
+97848
+2.2
+
+Sara Ahmed
+78697
+3.1
+
