@@ -227,7 +227,6 @@ public:
             return nullptr;
 
     }
-
     void swap(int firstIndex, int secondIndex){
         if(firstIndex < 0 || firstIndex>=length() || secondIndex < 0 || secondIndex>= length()) return;
         if(firstIndex==secondIndex) return;
