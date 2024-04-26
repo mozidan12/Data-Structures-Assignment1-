@@ -68,18 +68,3 @@ class stack{
   }
    }
 };
-int main(){
-  stack <int> S;
-  S.push(5);
-  S.push(6);
-  S.push(4);
-  S.push(6);
-  S.push(5);
-  S.push(8);
-  S.push(7);
-  S.print();
-  cout<<"top element is: "<<S.Top()<<"and the size is: "<<S.stackSize();
-  cout<<"\ndelete top: "<<S.pop();
-  S.clear();
-  S.print();
-}

@@ -62,18 +62,3 @@ public:
     }
 };
 
-int main()
-{
-    arrayQueue<int> q;
-    q.enqueue(5);
-    q.enqueue(2);
-    q.enqueue(3);
-    q.enqueue(7);
-    q.print();
-    cout<<"current front element: "<<q.first()<<" current length of queue:"<<q.queueSize()<<endl;
-    q.dequeue();
-    q.print();
-    cout<<"current front element: "<<q.first()<<" current length of queue:"<<q.queueSize()<<endl;
-
-    return 0;
-}
