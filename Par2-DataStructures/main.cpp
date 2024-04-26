@@ -11,8 +11,8 @@ int main() {
     do {
         cout << "Menu:" << endl;
         cout << "1. Linked List" << endl;
-        cout << "2. Doubly Linked List" << endl;
-        cout << "3. Circular Linked List" << endl;
+        cout << "2. Circular Linked List" << endl;
+        cout << "3. Doubly Linked List" << endl;
         cout << "4. Queue" << endl;
         cout << "5. Stack" << endl;
         cout << "0. Exit" << endl;
@@ -411,7 +411,7 @@ int main() {
                                 cout << "Not empty" << endl;
                             break;
                         case 13:
-                            cout << "Length: " << myList.length() << endl;
+                            cout << "Length: " << myList.linkedListSize() << endl;
                             break;
                         case 14:
                             myList.clear();

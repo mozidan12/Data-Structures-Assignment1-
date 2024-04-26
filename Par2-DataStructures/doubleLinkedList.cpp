@@ -217,8 +217,8 @@ public:
     }
 
     void clear(){
-        head = NULL;
-        size = 0;
+        while(!isEmpty())
+            removeAtHead();
     }
 
     void print() {
