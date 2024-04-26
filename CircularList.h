@@ -221,7 +221,6 @@ public:
     }
 
     void swap(int firstIndex, int secondIndex){
-
         if(firstIndex < 0 || firstIndex>=length() || secondIndex < 0 || secondIndex>= length()) {
             cout << "Index is out of range\n";
             return; }

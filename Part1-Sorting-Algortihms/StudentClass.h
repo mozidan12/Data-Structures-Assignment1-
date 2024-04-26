@@ -4,6 +4,7 @@
 #include<vector>
 #include<fstream>
 #include <chrono>
+#include<algorithm>
 // #include"StudentClass.cpp"
 using namespace std;
 class Student{
@@ -20,13 +21,16 @@ public:
 };
 vector<Student> readFromFile(string fileName);
 template<typename T>
-void SortAndEvaluate(void (*func)(vector<T>&), vector<T> &v, string filename){
+void SortAndEvaluate(void (*func)(vector<T>&), vector<T> &v, string filename, bool descending){
     ofstream file(filename, ios::app);
     auto start = chrono::high_resolution_clock::now();
     func(v);
     auto end = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     file<<"Running Time: "<<duration<<" microseconds"<<endl<<endl;
+    if(descending){
+        reverse(v.begin(),v.end());
+    }
     for(auto x:v){
         file<<x;
     }

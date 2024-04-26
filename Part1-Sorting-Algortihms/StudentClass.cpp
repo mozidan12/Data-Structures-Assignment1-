@@ -47,9 +47,9 @@ vector<Student> readFromFile(string fileName){
         getline(studentsFile,name);
         getline(studentsFile,id);
         getline(studentsFile,gpas);
-        name.pop_back();
-        id.pop_back();
-        gpas.pop_back();
+        // name.pop_back();
+        // id.pop_back();
+        // gpas.pop_back();
         double gpa = stod(gpas);
         Student newStudent(id, name, gpa);
         students.push_back(newStudent);
