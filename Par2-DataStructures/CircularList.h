@@ -51,7 +51,7 @@ public:
         cout << endl;
     }
 
-    void insertAt(T x, int index){
+    void insertAt(int index, T x){
         Node<T> *NodetoInsert{new Node<T>};
         Node<T> *current{head};
         if(index == 0){
