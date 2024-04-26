@@ -1,15 +1,6 @@
 #include <iostream>
+#include "LinkedList.h"
 using namespace std;
-
-template <typename T>
-class Node {
-public:
-    T data;
-    Node<T>* next;
-    Node<T>* prev;
-    Node(T value) : data(value), next(NULL), prev(NULL) {}
-};
-
 
 template <typename T>
 class DoubleLinkedList {
@@ -225,25 +216,25 @@ public:
 };
 
 
-int main() {
-    DoubleLinkedList<int> dll;
-    dll.insertAtTail(23);
-    dll.insertAtTail(85);
-    dll.insertAtTail(19);
-    dll.insertAtTail(62);
-    dll.insertAt(99, 3);
-    dll.removeAtTail();
-    dll.removeAtHead();
-    dll.insertAtHead(37);
-    dll.removeAt(3);
-    dll.insertAtTail(53);
-    dll.insertAtTail(49);
-
-    dll.replaceAt(20, 2);
-    dll.swap(2, 4);
-
-    dll.print();
-    cout << endl << ((dll.isItemAtEqual(85, 1))? "yes" : "no");
-    cout << endl << dll.linkedListSize();
-    cout << endl << dll.retrieveAt(3);
-}
+//int main() {
+//    DoubleLinkedList<int> dll;
+//    dll.insertAtTail(23);
+//    dll.insertAtTail(85);
+//    dll.insertAtTail(19);
+//    dll.insertAtTail(62);
+//    dll.insertAt(99, 3);
+//    dll.removeAtTail();
+//    dll.removeAtHead();
+//    dll.insertAtHead(37);
+//    dll.removeAt(3);
+//    dll.insertAtTail(53);
+//    dll.insertAtTail(49);
+//
+//    dll.replaceAt(20, 2);
+//    dll.swap(2, 4);
+//
+//    dll.print();
+//    cout << endl << ((dll.isItemAtEqual(85, 1))? "yes" : "no");
+//    cout << endl << dll.linkedListSize();
+//    cout << endl << dll.retrieveAt(3);
+//}

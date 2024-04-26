@@ -11,6 +11,9 @@ class Node{
 public:
     T data;
     Node<T> *next;
+    Node<T> *prev;
+    Node(): data(), next(nullptr), prev(nullptr){}
+    Node(T value) : data(value), next(NULL), prev(NULL) {}
     friend std::ostream& operator<<(std::ostream& os, const Node<T>* n) {
         os << n->data;
         return os;
