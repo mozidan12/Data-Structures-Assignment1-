@@ -152,22 +152,48 @@ public:
         return current->data;
     }
 
-    void swap (int firstItemIdx, int secondItemIdx){    // swap two nodes without swapping data.
-        if(firstItemIdx >= size || firstItemIdx < 0
-        || secondItemIdx >= size || secondItemIdx < 0){
+    void swap(int firstIndex, int secondIndex){
+        if(firstIndex < 0 || firstIndex>=size || secondIndex < 0 || secondIndex>= size) {
             cout << "Index is out of range\n";
-            return;
+            return; }
+        if(firstIndex==secondIndex) return;
+        Node<T>* a{head};
+        Node<T>* b{head};
+
+        for(int i = 0; i < firstIndex; i++){
+            a = a->next;
         }
-        if(firstItemIdx == secondItemIdx) return;
-        T firstData = retrieveAt(firstItemIdx);
-        T secondData = retrieveAt(secondItemIdx);
-        insertAt(firstData, secondItemIdx);
-        insertAt(secondData, firstItemIdx);
-        removeAt(firstItemIdx+1);
-        removeAt(secondItemIdx+1);
+        for(int i = 0; i < secondIndex; i++){
+            b = b->next;
+        }
+        if(!a or !b) return;
+
+        if(a->prev != nullptr) {//if a is not the head
+            a->prev->next = b;
+        }
+        else {
+            head = b;
+        }
+        if(b->prev != nullptr) {//if b is not the head
+            b->prev->next = a;
+        }
+        else {
+            head = a;
+        }
+        //swap next pointers
+        Node<T>* temp = b->next;
+        b->next = a->next;
+        a->next = temp;
     }
-
-
+    int length(){
+        Node<T>* p{head};
+        int l{};
+        while(!p){
+            p = p->next;
+            l++;
+        }
+        return l;
+    }
 
     bool isExist (T value){
         Node<T> *current = head;
@@ -195,24 +221,19 @@ public:
         size = 0;
     }
 
-    void print(){
-        if(!isEmpty()){
-            Node<T> *current = head;
-//            Node<T> *temp;  ////
-            while (current != NULL) {
+    void print() {
+        if (!isEmpty()) {
+            Node<T>* current = head;
+            while (current != nullptr) {
                 cout << current->data << " ";
-//                temp = current;   ////
                 current = current->next;
             }
-//            current = temp;    ////
-//            cout << endl;   ////
-//            while (current != NULL) {
-//                cout << current->data << " ";
-//                current = current->prev;
-//            }
+            cout << endl;
+        } else {
+            cout << "The list is empty" << endl;
         }
-        else cout << "The list is empty";
     }
+
 };
 
 

@@ -221,8 +221,10 @@ public:
     }
 
     void swap(int firstIndex, int secondIndex){
-        //problems: infinite loop when one index is the head
-        if(firstIndex < 0 || firstIndex>=length() || secondIndex < 0 || secondIndex>= length()) return;
+
+        if(firstIndex < 0 || firstIndex>=length() || secondIndex < 0 || secondIndex>= length()) {
+            cout << "Index is out of range\n";
+            return; }
         if(firstIndex==secondIndex) return;
 
         Node<T>* a{head};
