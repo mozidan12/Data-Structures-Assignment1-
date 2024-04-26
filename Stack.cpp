@@ -38,7 +38,8 @@ class stack{
       top=t;
       size++;
           }
-    size++;  
+    else 
+     size++;  
   }
   T pop()
   { 
