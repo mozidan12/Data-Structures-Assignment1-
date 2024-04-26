@@ -1,9 +1,9 @@
 #include <iostream>
 #include "LinkedList.h"
-#include "doubleLinkedList.h"
+#include "doubleLinkedList.cpp"
 #include "CircularList.h"
-#include "ListQueue.h"
-#include "Stack.h"
+#include "ListQueue.cpp"
+#include "Stack.cpp"
 using namespace std;
 
 int main() {
@@ -419,7 +419,7 @@ int main() {
                             break;
                         case 15:
                             cout << "List: ";
-                            myList.display();
+                            myList.print();
                             break;
                         case 0:
                             cout << "Closing Linked List menu" << endl;
@@ -432,13 +432,108 @@ int main() {
                 break;
             }
             case 4: {
-                ListQueue<int> myQueue;
-                // Implement Queue menu here
+                Queue<int> myQueue;
+                int choice2;
+                do {
+                    cout << "Queue Menu:" << endl;
+                    cout << "1. Enqueue" << endl;
+                    cout << "2. Dequeue" << endl;
+                    cout << "3. IsEmpty" << endl;
+                    cout << "4. Size" << endl;
+                    cout << "5. Clear" << endl;
+                    cout << "6. First" << endl;
+                    cout << "7. Display" << endl;
+                    cout << "0. Exit" << endl;
+                    cout << "Enter your choice: ";
+                    cin >> choice2;
+
+                    switch (choice2) {
+                        case 1:
+                            cout << "Enter value to enqueue: ";
+                            int value; cin >> value; cout << endl;
+                            myQueue.enqueue(value);
+                            break;
+                        case 2:
+                            myQueue.dequeue();
+                            break;
+                        case 3:
+                            if(myQueue.isEmpty()) cout <<"Yes, queue is empty\n";
+                            else cout <<"No, queue is not empty\n";
+                            break;
+                        case 4:
+                            cout << "Queue size: " << myQueue.queueSize() << endl;
+                            break;
+                        case 5:
+                            cout << "Clearing...\n";
+                            myQueue.clear();
+                            break;
+                        case 6:
+                            cout << "First element: " << myQueue.first() << endl;
+                            break;
+                        case 7:
+                            myQueue.print(); cout << endl;
+                            break;
+                        case 0:
+                            cout << "Closing Queue menu" << endl;
+                            break;
+                        default:
+                            cout << "Invalid choice. Please select from the menu." << endl;
+                            break;
+                    }
+                }while(choice2 != 0);
                 break;
             }
             case 5: {
-                Stack<int> myStack;
-                // Implement Stack menu here
+                stack<int> myStack;
+                int choice2;
+                do {
+                    cout << "Stack Menu:" << endl;
+                    cout << "1. Push" << endl;
+                    cout << "2. Pop" << endl;
+                    cout << "3. IsEmpty" << endl;
+                    cout << "4. Size" << endl;
+                    cout << "5. Clear" << endl;
+                    cout << "6. First" << endl;
+                    cout << "7. Display" << endl;
+                    cout << "0. Exit" << endl;
+                    cout << "Enter your choice: ";
+                    cin >> choice2;
+
+                    switch (choice2) {
+                        case 1:
+                            cout << "Enter value to push: ";
+                            int value; cin >> value; cout << endl;
+                            myStack.push(value);
+                            break;
+                        case 2:
+                            cout << "Popping...\n";
+                            myStack.pop();
+                            break;
+                        case 3:
+                            if(myStack.isEmpty()) cout <<"Yes, stack is empty\n";
+                            else cout <<"No, stack is not empty\n";
+                            break;
+                        case 4:
+                            cout << "Stack size: " << myStack.stackSize() << endl;
+                            break;
+                        case 5:
+                            cout << "Clearing...\n";
+                            myStack.clear();
+                            break;
+                        case 6:
+                            cout << "First element: " << myStack.Top() << endl;
+                            break;
+                        case 7:
+                            myStack.print(); cout << endl;
+                            break;
+                        case 0:
+                            cout << "Closing Stack menu" << endl;
+                            break;
+                        default:
+                            cout << "Invalid choice. Please select from the menu." << endl;
+                            break;
+                    }
+                }while(choice2 != 0);
                 break;
             }
             case 0:
@@ -448,7 +543,7 @@ int main() {
                 cout << "Invalid choice. Please select from the menu." << endl;
                 break;
         }
-    } while (choice != 0);
-
+    }while (choice != 0);
     return 0;
+
 }
