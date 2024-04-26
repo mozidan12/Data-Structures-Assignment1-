@@ -227,8 +227,43 @@ public:
             return nullptr;
 
     }
+    void swap(int firstIndex, int secondIndex){
+        if(firstIndex < 0 || firstIndex>=length() || secondIndex < 0 || secondIndex>= length()) return;
+        if(firstIndex==secondIndex) return;
 
+        Node<T>* a{first};
+        Node<T>* prevA{nullptr};
+        for(int i = 0; i < firstIndex; i++){
+            if(!a) return;
+            prevA = a;
+            a = a->next;
+        }
 
+        Node<T>* b{first};
+        Node<T>* prevB{nullptr};
+        for(int i = 0; i < secondIndex; i++){
+            if(!b) return;
+            prevB = b;
+            b = b->next;
+        }
+        if(!a or !b) return;
+        if(prevA != nullptr) {//if a is not the head
+            prevA->next = b;
+        }
+        else {
+            first = b;
+        }
+        if(prevB != nullptr) {//if b is not the head
+            prevB->next = a;
+        }
+        else {
+            first = a;
+        }
+        //swap next pointers
+        Node<T>* temp = b->next;
+        b->next = a->next;
+        a->next = temp;
+    }
     bool exists(T x) {
         if(first->data == x) return true;
         Node<T>* currentNode{first};
