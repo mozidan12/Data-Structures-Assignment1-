@@ -3,6 +3,7 @@
 using namespace std;
 #include<bits/stdc++.h>
 
+int COUNT= 0;
 
 template<typename T>
 void ShellSort(vector<T> &v){
@@ -15,6 +16,7 @@ void ShellSort(vector<T> &v){
                 
                 v[pos]  = v[pos-gap];
                 pos -=gap;
+                COUNT++;
             }
             v[pos] = curr;
         }
@@ -27,6 +29,7 @@ void bubbleSort(vector<T> &v){
     for (int i = 0; i < n-1; ++i) {
         bool flag = false;
         for (int j = 0; j < n-i-1; ++j) {
+            COUNT++;
             if(v[j] > v[j+1]) {
                 swap(v[j], v[j + 1]);
                 flag = true;
@@ -43,6 +46,7 @@ void selection_sort(vector<T> &v){
     for (int i = 0; i < n-1; ++i) {
         int minIdx = i;
         for (int j = i+1; j < n; ++j) {
+            COUNT++;
             if(v[j] < v[minIdx])
                 minIdx = j;
         }
@@ -56,7 +60,9 @@ void insertion_sort(vector<T> &v){
     for (int i = 1; i < n; ++i) {   // 40, 50, 60, 30, 10, 20
         T key = v[i]; //60
         int j = i-1;  //1
+        COUNT++;
         while(j >= 0 && v[j] > key){
+            COUNT++;
             v[j+1] = v[j];
             j -= 1;
         }
@@ -84,6 +90,7 @@ void QuickSort(std::vector<t>& v) {
 
         if (v[i] < pivot) {
             left.emplace_back(v[i]);
+            COUNT ++;
         }
         else {
             right.emplace_back(v[i]);
@@ -109,6 +116,7 @@ void Merge(std::vector<T> &v, std::vector<T> &left, std::vector<T> &right){
     // Loop through the left and right vectors and compare the elements
     // To sort them in the main vector
     while(i < left.size() && j < right.size()){
+        COUNT++;
         if(left[i] < right[j]){
             v[k] = left[i];
             i++;
@@ -164,70 +172,75 @@ void MergeSort(std::vector<T> &v){
     Merge(v, left, right);
 }
 
-int main(){
-    cout << "Choose input file: ";
-
+int main()
+{
+    cout<<"Choose input file: ";
     string input_filename;
-    cin >> input_filename;
-
+    cin>>input_filename;
     vector<Student> v = readFromFile(input_filename);
-    cout << "Choose output file: ";
+    cout<<"Choose output file: ";
     string output_filename;
-    cin >> output_filename;
-
+    cin>>output_filename;
     bool sort;
-    cout << "Choose whether to sort by name or gpa\n";
-    cout << "0-Gpa\n1-Name\n";
-    cin >> sort;
-    
+    cout<<"Choose whether to sort by name or gpa\n";
+    cout<<"0-Gpa\n1-Name\n";
+    cin>>sort;
     if(sort){
         Student::modifySortByName(true);
     }
     else{
         Student::modifySortByName(false);
     }
+    cout<<"Choose Whether to sort Ascendingly Or Descendingly: 0-Ascending 1-Descending: ";
+    bool descending;
+    cin>>descending;
     while(true){
-        cout << "Choose sorting algorithm: ";
-        cout << "1-Shell Sort\n2-Insertion Sort\n3-Selection Sort\n4-Quick Sort\n5-Bubble Sort\n6-Merge Sort\n7-End Program\n";
-        
+        cout<<"Choose sorting algorithm: ";
         int choice;
-        cin >> choice;
-
+        cout<<"1-Shell Sort\n2-Insertion Sort\n3-Selection Sort\n4-Quick Sort\n5-Bubble Sort\n6-Merge Sort\n7-End Program\n";
+        cin>>choice;
         ofstream file(output_filename, ios::app);
         switch(choice){
             case(1):
-            file << "Algorithm: Shell Sort\n";
-            SortAndEvaluate(ShellSort, v, output_filename);
+            COUNT = 0;
+            file<<endl<<"Algorithm: Shell Sort"<<endl;
+            SortAndEvaluate(ShellSort,v,output_filename,descending);
+            file<<"No .of Comparisons : "<<COUNT<<endl;
             break;
-
             case(2):
-            file << "Algorithm: Insertion Sort\n";
-            SortAndEvaluate(insertion_sort, v, output_filename);
+            COUNT =0;
+            file<<endl<<"Algorithm: Insertion Sort"<<endl;
+            SortAndEvaluate(insertion_sort,v,output_filename,descending);
+            file<<"No .of Comparisons : "<<COUNT<<endl;
             break;
-
             case(3):
-            file << "Algorithm: Selection Sort\n";
-            SortAndEvaluate(selection_sort, v, output_filename);
-            break; 
-
+            COUNT =0;
+            file<<endl<<"Algorithm: Selection Sort"<<endl;
+            SortAndEvaluate(selection_sort,v,output_filename,descending);
+            file<<"No .of Comparisons : "<<COUNT<<endl;
+            break;
             case(4):
-            file << "Algorithm: Quick Sort\n";
-            SortAndEvaluate(QuickSort, v, output_filename);
+            COUNT =0;
+            file<<endl<<"Algorithm: Quick Sort"<<endl;
+            SortAndEvaluate(QuickSort,v,output_filename,descending);
+            file<<"No .of Comparisons : "<<COUNT<<endl;
             break;
-
             case(5):
-            file << "Algorithm: Bubble Sort\n";
-            SortAndEvaluate(bubbleSort,v,output_filename);
+            COUNT =0;
+            file<<endl<<"Algorithm: Bubble Sort"<<endl;
+            SortAndEvaluate(bubbleSort,v,output_filename,descending);
+            file<<"No .of Comparisons : "<<COUNT<<endl;
             break;
-
             case(6):
-            file << "Algorithm: Merge Sort\n";
-            SortAndEvaluate(MergeSort, v, output_filename);
+            COUNT =0;
+            file<<endl<<"Algorithm: Merge Sort"<<endl;
+            SortAndEvaluate(MergeSort,v,output_filename,descending);
+            file<<"No .of Comparisons : "<<COUNT<<endl;
             break;
-
             case(7):
             return 0;
         }
     }
+    
     return 0;
 }
