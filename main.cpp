@@ -164,19 +164,22 @@ void MergeSort(std::vector<T> &v){
     Merge(v, left, right);
 }
 
-int main()
-{
-    cout<<"Choose input file: ";
+int main(){
+    cout << "Choose input file: ";
+
     string input_filename;
-    cin>>input_filename;
+    cin >> input_filename;
+
     vector<Student> v = readFromFile(input_filename);
-    cout<<"Choose output file: ";
+    cout << "Choose output file: ";
     string output_filename;
-    cin>>output_filename;
+    cin >> output_filename;
+
     bool sort;
-    cout<<"Choose whether to sort by name or gpa\n";
-    cout<<"0-Gpa\n1-Name\n";
-    cin>>sort;
+    cout << "Choose whether to sort by name or gpa\n";
+    cout << "0-Gpa\n1-Name\n";
+    cin >> sort;
+    
     if(sort){
         Student::modifySortByName(true);
     }
@@ -184,40 +187,47 @@ int main()
         Student::modifySortByName(false);
     }
     while(true){
-        cout<<"Choose sorting algorithm: ";
+        cout << "Choose sorting algorithm: ";
+        cout << "1-Shell Sort\n2-Insertion Sort\n3-Selection Sort\n4-Quick Sort\n5-Bubble Sort\n6-Merge Sort\n7-End Program\n";
+        
         int choice;
-        cout<<"1-Shell Sort\n2-Insertion Sort\n3-Selection Sort\n4-Quick Sort\n5-Bubble Sort\n6-Merge Sort\n7-End Program\n";
-        cin>>choice;
+        cin >> choice;
+
         ofstream file(output_filename, ios::app);
         switch(choice){
             case(1):
-            file<<"Algorithm: Shell Sort\n";
-            SortAndEvaluate(ShellSort,v,output_filename);
+            file << "Algorithm: Shell Sort\n";
+            SortAndEvaluate(ShellSort, v, output_filename);
             break;
+
             case(2):
-            file<<"Algorithm: Insertion Sort\n";
-            SortAndEvaluate(insertion_sort,v,output_filename);
+            file << "Algorithm: Insertion Sort\n";
+            SortAndEvaluate(insertion_sort, v, output_filename);
             break;
+
             case(3):
-            file<<"Algorithm: Selection Sort\n";
-            SortAndEvaluate(selection_sort,v,output_filename);
-            break;
+            file << "Algorithm: Selection Sort\n";
+            SortAndEvaluate(selection_sort, v, output_filename);
+            break; 
+
             case(4):
-            file<<"Algorithm: Quick Sort\n";
-            SortAndEvaluate(QuickSort,v,output_filename);
+            file << "Algorithm: Quick Sort\n";
+            SortAndEvaluate(QuickSort, v, output_filename);
             break;
+
             case(5):
-            file<<"Algorithm: Bubble Sort\n";
+            file << "Algorithm: Bubble Sort\n";
             SortAndEvaluate(bubbleSort,v,output_filename);
             break;
+
             case(6):
-            file<<"Algorithm: Merge Sort\n";
-            SortAndEvaluate(MergeSort,v,output_filename);
+            file << "Algorithm: Merge Sort\n";
+            SortAndEvaluate(MergeSort, v, output_filename);
             break;
+
             case(7):
             return 0;
         }
     }
-    
     return 0;
 }
