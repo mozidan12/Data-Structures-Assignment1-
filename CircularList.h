@@ -220,6 +220,79 @@ public:
             return nullptr;
     }
 
+    void swap(int firstIndex, int secondIndex){
+        //problems: infinite loop when one index is the head
+        if(firstIndex < 0 || firstIndex>=length() || secondIndex < 0 || secondIndex>= length()) return;
+        if(firstIndex==secondIndex) return;
+
+        Node<T>* a{head};
+        Node<T>* prevA{nullptr};
+        for(int i = 0; i < firstIndex; i++){
+            prevA = a;
+            a = a->next;
+        }
+
+        Node<T>* b{head};
+        Node<T>* prevB{nullptr};
+        for(int i = 0; i < secondIndex; i++){
+            prevB = b;
+            b = b->next;
+        }
+
+        if(!a or !b) return;
+
+        if(a->next != head) {//if a is not the tail
+            if(prevA){ //if a is not the head
+                prevA->next = b;
+            }
+            else { // a is head but not tail
+                head = b;
+                // Update the next pointer of the last node to point to the new head
+                Node<T>* temp = b;
+                while (temp->next != a) {
+                    temp = temp->next;
+                }
+                temp->next = head;
+            }
+        }
+        else { //if a is the tail
+            if(prevA) {
+                prevA->next = b; } //if a is not the head
+            else {
+                head = b;
+                while (b->next != a) {
+                    b = b->next;
+                }
+                b->next = head;
+            } // if a is both the head and the tail
+        }
+        if (b->next != head) {
+            if (prevB)
+                prevB->next = a;
+            else {
+                head = a;
+                Node<T>* temp = a;
+                while (temp->next != b) {
+                    temp = temp->next;
+                }
+                temp->next = head;
+            }
+        }
+        else {//if b is the tail
+            if(prevB) { prevB->next = a; } //if a is not the head
+            else {
+                head = a;
+                while (a->next != b) {
+                    a = a->next;
+                }
+                a->next = head;
+            } // if a is both the head and the tail
+        }
+        //swap next pointers
+        Node<T>* temp = b->next;
+        b->next = a->next;
+        a->next = temp;
+    }
     bool exists(T x) {
         if(head == nullptr) return false;
         if(head->data == x) return true;
