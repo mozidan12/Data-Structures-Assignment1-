@@ -11,7 +11,7 @@ class Queue{
     };
     Node* front;
     Node* back;
-    int length;
+    int length{};
 public:
     Queue(){
         front = NULL;
@@ -25,9 +25,9 @@ public:
         return length;
     }
     void clear(){
-        front = NULL;
-        back = NULL;
-        length = 0;
+        while(front!= nullptr){
+            dequeue();
+        }
     }
     void enqueue(T element){
         Node* newNode = new Node();

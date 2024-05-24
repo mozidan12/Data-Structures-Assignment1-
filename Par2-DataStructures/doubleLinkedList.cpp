@@ -233,6 +233,9 @@ public:
             cout << "The list is empty" << endl;
         }
     }
+    ~DoubleLinkedList(){
+        clear();
+    }
 
 };
 

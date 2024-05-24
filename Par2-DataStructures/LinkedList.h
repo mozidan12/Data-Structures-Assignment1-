@@ -303,7 +303,9 @@ public:
         while(first != nullptr)
             removeAtHead();
     }
-
+void ~LinkedList(){
+        clear();
+    }
 
 };
 

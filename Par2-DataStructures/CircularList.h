@@ -326,6 +326,8 @@ public:
         while(head != nullptr)
             removeAtHead();
     }
-
+    ~CircularList(){
+        clear();
+    }
 };
 #endif //UNTITLED1_CIRCULARLIST_H
